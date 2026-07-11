@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="contact_title">Contact — Experience Klassiek</title>
+<meta name="description" data-i18n="contact_meta_description" data-i18n-attr="content" content="Neem contact op met Experience Klassiek — Karen Su & Ruben Plazier, actief in Nederland en België.">
+<link rel="icon" href="assets/logo-badge.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo-ink.png" alt="Experience Klassiek">
+      <span>Experience Klassiek</span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="concerten.html" data-i18n="nav_concerten">Concerten</a></li>
+      <li><a href="academy.html" data-i18n="nav_academy">Academy</a></li>
+      <li><a href="over-ons.html" data-i18n="nav_overons">Over ons</a></li>
+      <li><a href="contact.html" aria-current="page" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" data-lang="nl">NL</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="fr">FR</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="contact_eyebrow">Contact</span>
+    <h1 class="reveal" data-i18n="contact_h1">Neem contact met ons op</h1>
+    <p class="lede reveal" data-i18n="contact_lede">Vragen over de concertreeks, de Academy, of een samenwerking? Karen Su en Ruben Plazier horen graag van je.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="eyebrow" data-i18n="contact_nl_label">Nederland</span>
+        <h3>Dordrecht</h3>
+        <p>Nieuwe Haven 20<br>3311 AP Dordrecht<br><span data-i18n="contact_nl_label">Nederland</span></p>
+        <p><a href="tel:+31625418493" style="border-bottom:1px solid var(--gold)">+31 6 25 41 84 93</a></p>
+      </div>
+      <div class="contact-card">
+        <span class="eyebrow" data-i18n="contact_be_label">België</span>
+        <h3>Antwerpen</h3>
+        <p>Tunnelplaats 8 - 0503<br>2000 Antwerpen<br><span data-i18n="contact_be_label">België</span></p>
+        <p><a href="tel:+31625418493" style="border-bottom:1px solid var(--gold)">+31 6 25 41 84 93</a></p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <span class="eyebrow" data-i18n="contact_email_label">E-mail</span>
+      <h2><a href="mailto:experienceklassiek@gmail.com">experienceklassiek@gmail.com</a></h2>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="contact_form_eyebrow">Bericht sturen</span>
+      <h2 data-i18n="contact_form_h2">Stuur ons een bericht</h2>
+    </div>
+
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/bedankt.html">
+      <input type="hidden" name="form-name" value="contact">
+      <p style="position:absolute;left:-9999px" aria-hidden="true">
+        <label>Laat dit veld leeg: <input name="bot-field"></label>
+      </p>
+      <div class="form-grid">
+        <div>
+          <label for="naam" data-i18n="form_naam">Naam</label>
+          <input type="text" id="naam" name="naam" required>
+        </div>
+        <div>
+          <label for="email" data-i18n="form_email">E-mailadres</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="full">
+          <label for="onderwerp" data-i18n="contact_form_onderwerp">Onderwerp</label>
+          <input type="text" id="onderwerp" name="onderwerp">
+        </div>
+        <div class="full">
+          <label for="bericht" data-i18n="contact_form_bericht">Bericht</label>
+          <textarea id="bericht" name="bericht" required></textarea>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <button type="submit" class="btn btn-solid" data-i18n="contact_form_submit">Verstuur bericht</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <span class="foot-logo logo-mark" style="--mask-src:url('assets/logo-paper.png')"><img src="assets/logo-paper.png" alt="Experience Klassiek"></span>
+        <p class="foot-meta" data-i18n="foot_tagline">Concertreeks en academy voor klassieke muziek, opgericht door Karen Su en Ruben Plazier in 2022. Actief in Nederland en België.</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="concerten.html" data-i18n="nav_concerten">Concerten</a></li>
+        <li><a href="academy.html" data-i18n="nav_academy">Academy</a></li>
+        <li><a href="over-ons.html" data-i18n="nav_overons">Over ons</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_copyright">© 2026 Experience Klassiek — Karen Su &amp; Ruben Plazier</span>
+      <span>experienceklassiek@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="translations.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
