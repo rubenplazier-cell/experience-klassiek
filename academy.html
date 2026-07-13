@@ -119,37 +119,12 @@
       <p style="color:var(--muted);max-width:60ch" data-i18n="academy_signup_lede">Vertel ons over jezelf en je instrument. We nemen persoonlijk contact met je op om de mogelijkheden te bespreken.</p>
     </div>
 
-    <form name="academy-aanmelding" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/bedankt.html">
-      <input type="hidden" name="form-name" value="academy-aanmelding">
-      <p style="position:absolute;left:-9999px" aria-hidden="true">
-        <label>Laat dit veld leeg: <input name="bot-field"></label>
-      </p>
-      <div class="form-grid">
-        <div>
-          <label for="naam" data-i18n="form_naam">Naam</label>
-          <input type="text" id="naam" name="naam" required>
-        </div>
-        <div>
-          <label for="email" data-i18n="form_email">E-mailadres</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-          <label for="telefoon" data-i18n="form_telefoon">Telefoonnummer</label>
-          <input type="tel" id="telefoon" name="telefoon">
-        </div>
-        <div>
-          <label for="instrument" data-i18n="form_instrument">Instrument</label>
-          <input type="text" id="instrument" name="instrument" required>
-        </div>
-        <div class="full">
-          <label for="bericht" data-i18n="academy_form_bericht_label">Vertel ons over jezelf</label>
-          <textarea id="bericht" name="bericht" data-i18n="academy_form_placeholder" data-i18n-attr="placeholder" placeholder="Opleiding, repertoire, ervaring, en wat je hoopt te bereiken met de Academy..."></textarea>
-        </div>
-      </div>
+    <div class="tier-card" style="max-width:640px;padding:clamp(28px,4vw,48px)">
+      <p data-i18n="academy_signup_note">Aanmelden verloopt via het aanmeldportaal van de Academy: vul je gegevens in en deel een recente video van je spel, zodat Karen Su en Ruben Plazier je aanmelding persoonlijk kunnen bekijken.</p>
       <div style="margin-top:24px">
-        <button type="submit" class="btn btn-solid" data-i18n="academy_form_submit">Verstuur aanmelding</button>
+        <a href="https://academy.experienceklassiek.com" target="_blank" rel="noopener" class="btn btn-solid" data-i18n="academy_signup_cta">Naar het aanmeldportaal →</a>
       </div>
-    </form>
+    </div>
   </div>
 </section>
 
