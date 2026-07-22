@@ -49,6 +49,84 @@ function applyLang(lang) {
   });
 }
 
+function initAgendaModal() {
+  const items = document.querySelectorAll('.agenda-item[data-date]');
+  if (!items.length) return;
+
+  const modal = document.createElement('div');
+  modal.className = 'agenda-modal';
+  modal.innerHTML = `
+    <div class="agenda-modal-inner" role="dialog" aria-modal="true">
+      <button type="button" class="agenda-modal-close" aria-label="Sluiten">&times;</button>
+      <div class="agenda-modal-date"></div>
+      <h3 class="agenda-modal-venue"></h3>
+      <div class="agenda-modal-section">
+        <h4 data-i18n="agenda_modal_address_label">Locatie</h4>
+        <p class="agenda-modal-address"></p>
+      </div>
+      <div class="agenda-modal-section">
+        <h4 data-i18n="agenda_modal_time_label">Tijd</h4>
+        <p class="agenda-modal-time"></p>
+      </div>
+      <div class="agenda-modal-section">
+        <h4 data-i18n="agenda_modal_program_label">Programma</h4>
+        <p class="agenda-modal-program"></p>
+      </div>
+      <a href="#" class="btn btn-solid agenda-modal-tickets" data-i18n="agenda_tickets_cta">Koop tickets →</a>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const modalDate = modal.querySelector('.agenda-modal-date');
+  const modalVenue = modal.querySelector('.agenda-modal-venue');
+  const modalAddress = modal.querySelector('.agenda-modal-address');
+  const modalTime = modal.querySelector('.agenda-modal-time');
+  const modalProgram = modal.querySelector('.agenda-modal-program');
+  const modalTickets = modal.querySelector('.agenda-modal-tickets');
+
+  function open(item) {
+    const day = item.querySelector('.agenda-date .day');
+    const month = item.querySelector('.agenda-date .month');
+    const venue = item.querySelector('.agenda-info h3');
+    const ticketLink = item.querySelector('a.btn');
+    const detail = item.querySelector('[data-agenda-detail]');
+    const paras = detail ? detail.querySelectorAll('p') : [];
+    modalDate.textContent = day && month ? `${day.textContent} ${month.textContent}` : '';
+    modalVenue.textContent = venue ? venue.textContent : '';
+    modalAddress.innerHTML = paras[0] ? paras[0].innerHTML : '';
+    modalTime.textContent = paras[1] ? paras[1].textContent : '';
+    modalProgram.textContent = paras[2] ? paras[2].textContent : '';
+    if (ticketLink) modalTickets.setAttribute('href', ticketLink.getAttribute('href'));
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      open(item);
+    });
+    item.addEventListener('keydown', e => {
+      if (e.target.closest('a')) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(item);
+      }
+    });
+  });
+  modal.querySelector('.agenda-modal-close').addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', e => {
+    if (modal.classList.contains('open') && e.key === 'Escape') close();
+  });
+
+  applyLang(currentLang());
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
@@ -73,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.15 });
     io.observe(el);
   });
+
+  initAgendaModal();
 
   applyLang(currentLang());
 

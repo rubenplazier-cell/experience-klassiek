@@ -235,8 +235,9 @@ textarea{resize:vertical;min-height:120px}
 
 /* ===== Agenda ===== */
 .agenda-list{display:flex;flex-direction:column;gap:3px;background:var(--ink);border:3px solid var(--ink)}
-.agenda-item{background:var(--paper);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(18px,3vw,32px);align-items:center;padding:clamp(20px,3vw,32px);transition:background .3s ease}
+.agenda-item{background:var(--paper);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(18px,3vw,32px);align-items:center;padding:clamp(20px,3vw,32px);transition:background .3s ease;cursor:pointer}
 .agenda-item:hover{background:var(--paper-raised)}
+.agenda-item:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
 .agenda-item:hover .agenda-date .day{transform:scale(1.08)}
 .agenda-date{font-family:'Bebas Neue',sans-serif;line-height:.9;min-width:84px;text-align:center}
 .agenda-date .day{display:block;font-size:2.8rem;color:var(--gold);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
@@ -250,6 +251,36 @@ textarea{resize:vertical;min-height:120px}
   .agenda-info{grid-area:info}
   .agenda-item .btn{grid-area:cta;margin-top:12px;width:100%;justify-content:center}
 }
+
+/* ===== Agenda detail modal ===== */
+.agenda-modal{
+  position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;
+  padding:clamp(16px,4vw,48px);background:rgba(10,10,10,.92);
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.agenda-modal.open{opacity:1;pointer-events:auto}
+.agenda-modal-inner{
+  background:var(--paper);border:3px solid var(--ink);max-width:640px;width:100%;
+  max-height:88vh;overflow-y:auto;position:relative;padding:clamp(28px,4vw,48px);
+  transform:translateY(16px);transition:transform .3s cubic-bezier(.16,1,.3,1);
+}
+.agenda-modal.open .agenda-modal-inner{transform:translateY(0)}
+.agenda-modal-close{
+  position:absolute;top:14px;right:14px;width:40px;height:40px;z-index:2;
+  background:var(--ink);color:var(--paper);border:0;font-size:1.5rem;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s ease;
+}
+.agenda-modal-close:hover{background:var(--gold)}
+.agenda-modal-date{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1.1rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.3em}
+.agenda-modal-venue{font-size:clamp(1.9rem,4vw,2.6rem);margin:0 0 .3em}
+.agenda-modal-section{margin-top:22px}
+.agenda-modal-section h4{
+  font-family:'Inter',sans-serif;font-size:.76rem;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin:0 0 .5em;
+}
+.agenda-modal-section p{color:var(--muted);margin:0}
+.agenda-modal-section a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.agenda-modal .btn{margin-top:26px}
 
 /* ===== Contact ===== */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--ink);border:3px solid var(--ink)}
