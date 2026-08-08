@@ -127,6 +127,31 @@ function initAgendaModal() {
   applyLang(currentLang());
 }
 
+function initCaptchaGuard() {
+  const box = document.querySelector('.form-captcha');
+  if (!box) return;
+  const form = box.closest('form');
+  if (!form) return;
+
+  function solved() {
+    const field = form.querySelector('[name="g-recaptcha-response"]');
+    // No field means Netlify has not injected the widget (e.g. local preview): let it through.
+    return !field || !!field.value;
+  }
+
+  form.addEventListener('submit', e => {
+    if (solved()) return;
+    e.preventDefault();
+    box.classList.add('invalid');
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // Clear the error state once they tick the box.
+  box.addEventListener('click', () => {
+    if (solved()) box.classList.remove('invalid');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
@@ -153,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initAgendaModal();
+  initCaptchaGuard();
 
   applyLang(currentLang());
 

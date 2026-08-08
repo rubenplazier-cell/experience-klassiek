@@ -73,7 +73,7 @@
       <h2 data-i18n="contact_form_h2">Stuur ons een bericht</h2>
     </div>
 
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/bedankt.html">
+    <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="bot-field" action="/bedankt.html">
       <input type="hidden" name="form-name" value="contact">
       <p style="position:absolute;left:-9999px" aria-hidden="true">
         <label>Laat dit veld leeg: <input name="bot-field"></label>
@@ -94,6 +94,13 @@
         <div class="full">
           <label for="bericht" data-i18n="contact_form_bericht">Bericht</label>
           <textarea id="bericht" name="bericht" required></textarea>
+        </div>
+        <div class="full">
+          <div class="form-captcha" id="formCaptcha">
+            <span class="captcha-label" data-i18n="form_captcha_label">Even controleren</span>
+            <div class="captcha-widget" data-netlify-recaptcha="true"></div>
+            <p class="captcha-error" id="captchaError" role="alert" data-i18n="form_captcha_error">Bevestig even dat je geen robot bent.</p>
+          </div>
         </div>
       </div>
       <div style="margin-top:24px">
