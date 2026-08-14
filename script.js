@@ -101,7 +101,8 @@ function initAgendaModal() {
     modalVenue.textContent = venue ? venue.textContent : '';
     modalAddress.innerHTML = paras[0] ? paras[0].innerHTML : '';
     modalTime.textContent = paras[1] ? paras[1].textContent : '';
-    modalProgram.textContent = paras[2] ? paras[2].textContent : '';
+    // Programs are set as markup so a multi-work listing keeps its line breaks.
+    modalProgram.innerHTML = paras[2] ? paras[2].innerHTML : '';
     // Fourth paragraph is optional: only concerts with travel details show this section.
     modalAccess.innerHTML = paras[3] ? paras[3].innerHTML : '';
     modalAccessSection.hidden = !paras[3];
