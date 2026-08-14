@@ -50,15 +50,77 @@
       <h2 data-i18n="concerten_agenda_h2">Onze eerstvolgende concerten</h2>
       <p style="color:var(--muted);max-width:56ch" data-i18n="concerten_agenda_p">Klik op een concert voor het volledige programma, de locatie en alle praktische info. Kaarten zijn te koop via onze ticketpartner.</p>
     </div>
+    <div class="agenda-filter" id="agendaFilter">
+      <button type="button" class="agenda-filter-btn active" data-venue="all" data-i18n="agenda_filter_all">Alle locaties</button>
+      <button type="button" class="agenda-filter-btn" data-venue="maas" data-i18n="agenda_filter_maas">Sociëteit aan de Maas</button>
+      <button type="button" class="agenda-filter-btn" data-venue="breda" data-i18n="agenda_filter_breda">Waalse Kerk Breda</button>
+    </div>
+    <p class="agenda-empty" id="agendaEmpty" hidden data-i18n="agenda_filter_empty">Geen concerten op deze locatie.</p>
     <div class="agenda-list stagger">
 
-      <div class="agenda-item reveal" data-date="2026-10-11" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="agenda-item reveal" data-date="2026-09-04" data-venue="breda" tabindex="0" role="button" aria-haspopup="dialog">
+        <div class="agenda-date"><span class="day">4</span><span class="month" data-i18n="agenda_month_sep">Sep</span></div>
+        <div class="agenda-info">
+          <h3 data-i18n="agenda_breda_venue">Waalse Kerk Breda</h3>
+          <p data-i18n="agenda3_program">Duo Mohona: Olga Göschel en Neil Dixon, viool</p>
+        </div>
+        <div hidden data-agenda-detail>
+          <p data-i18n-html="agenda_breda_address">Waalse Kerk<br>Catharinastraat 83, 4811 XG Breda</p>
+          <p data-i18n="agenda_breda_time">Aanvang 12:00. Entree 5 euro, met korting op abonnementen en gratis voor houders van een Bredapas.</p>
+          <p data-i18n="agenda3_full_program">Programma wordt bekendgemaakt in het maandprogramma van Cultuur Tijdens het Middaguur.</p>
+          <p data-i18n-html="agenda_breda_access">De lunchconcerten in de Waalse Kerk worden georganiseerd door Stichting Cultuur Tijdens het Middaguur. <a href="https://www.cultuurtijdenshetmiddaguur.nl" target="_blank" rel="noopener">Meer over de reeks</a> of <a href="https://www.google.com/maps/search/?api=1&amp;query=Catharinastraat+83%2C+4811+XG+Breda" target="_blank" rel="noopener">plan je route</a>.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" data-date="2026-09-11" data-venue="breda" tabindex="0" role="button" aria-haspopup="dialog">
+        <div class="agenda-date"><span class="day">11</span><span class="month" data-i18n="agenda_month_sep">Sep</span></div>
+        <div class="agenda-info">
+          <h3 data-i18n="agenda_breda_venue">Waalse Kerk Breda</h3>
+          <p data-i18n="agenda4_program">Jeroen den Herder (cello) en Hua-Hsuan Lee (piano)</p>
+        </div>
+        <div hidden data-agenda-detail>
+          <p data-i18n-html="agenda_breda_address">Waalse Kerk<br>Catharinastraat 83, 4811 XG Breda</p>
+          <p data-i18n="agenda_breda_time">Aanvang 12:00. Entree 5 euro, met korting op abonnementen en gratis voor houders van een Bredapas.</p>
+          <p data-i18n="agenda4_full_program">Programma wordt bekendgemaakt in het maandprogramma van Cultuur Tijdens het Middaguur.</p>
+          <p data-i18n-html="agenda_breda_access">De lunchconcerten in de Waalse Kerk worden georganiseerd door Stichting Cultuur Tijdens het Middaguur. <a href="https://www.cultuurtijdenshetmiddaguur.nl" target="_blank" rel="noopener">Meer over de reeks</a> of <a href="https://www.google.com/maps/search/?api=1&amp;query=Catharinastraat+83%2C+4811+XG+Breda" target="_blank" rel="noopener">plan je route</a>.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" data-date="2026-09-18" data-venue="breda" tabindex="0" role="button" aria-haspopup="dialog">
+        <div class="agenda-date"><span class="day">18</span><span class="month" data-i18n="agenda_month_sep">Sep</span></div>
+        <div class="agenda-info">
+          <h3 data-i18n="agenda_breda_venue">Waalse Kerk Breda</h3>
+          <p data-i18n="agenda5_program">Luna Pantoja Rodriguez (cello) en Ivan Petrenko (piano)</p>
+        </div>
+        <div hidden data-agenda-detail>
+          <p data-i18n-html="agenda_breda_address">Waalse Kerk<br>Catharinastraat 83, 4811 XG Breda</p>
+          <p data-i18n="agenda_breda_time">Aanvang 12:00. Entree 5 euro, met korting op abonnementen en gratis voor houders van een Bredapas.</p>
+          <p data-i18n="agenda5_full_program">Programma wordt bekendgemaakt in het maandprogramma van Cultuur Tijdens het Middaguur.</p>
+          <p data-i18n-html="agenda_breda_access">De lunchconcerten in de Waalse Kerk worden georganiseerd door Stichting Cultuur Tijdens het Middaguur. <a href="https://www.cultuurtijdenshetmiddaguur.nl" target="_blank" rel="noopener">Meer over de reeks</a> of <a href="https://www.google.com/maps/search/?api=1&amp;query=Catharinastraat+83%2C+4811+XG+Breda" target="_blank" rel="noopener">plan je route</a>.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" data-date="2026-09-25" data-venue="breda" tabindex="0" role="button" aria-haspopup="dialog">
+        <div class="agenda-date"><span class="day">25</span><span class="month" data-i18n="agenda_month_sep">Sep</span></div>
+        <div class="agenda-info">
+          <h3 data-i18n="agenda_breda_venue">Waalse Kerk Breda</h3>
+          <p data-i18n="agenda6_program">Jef Kolacny, piano</p>
+        </div>
+        <div hidden data-agenda-detail>
+          <p data-i18n-html="agenda_breda_address">Waalse Kerk<br>Catharinastraat 83, 4811 XG Breda</p>
+          <p data-i18n="agenda_breda_time">Aanvang 12:00. Entree 5 euro, met korting op abonnementen en gratis voor houders van een Bredapas.</p>
+          <p data-i18n="agenda6_full_program">Programma wordt bekendgemaakt in het maandprogramma van Cultuur Tijdens het Middaguur.</p>
+          <p data-i18n-html="agenda_breda_access">De lunchconcerten in de Waalse Kerk worden georganiseerd door Stichting Cultuur Tijdens het Middaguur. <a href="https://www.cultuurtijdenshetmiddaguur.nl" target="_blank" rel="noopener">Meer over de reeks</a> of <a href="https://www.google.com/maps/search/?api=1&amp;query=Catharinastraat+83%2C+4811+XG+Breda" target="_blank" rel="noopener">plan je route</a>.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" data-date="2026-10-11" data-venue="maas" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="agenda-date"><span class="day">11</span><span class="month" data-i18n="agenda_month_oct">Okt</span></div>
         <div class="agenda-info">
           <h3 data-i18n="agenda1_venue">Sociëteit aan de Maas</h3>
           <p data-i18n="agenda1_program">Luk Callens (hobo), Luc Tooten (cello) en Stéphane De May (piano)</p>
         </div>
-        <a href="#" class="btn btn-solid" data-i18n="agenda_tickets_cta">Koop tickets →</a>
+        <a href="https://www.tickettailor.com/events/experienceklassiek/2360499" target="_blank" rel="noopener" class="btn btn-solid" data-i18n="agenda_tickets_cta">Koop tickets →</a>
         <div hidden data-agenda-detail>
           <p data-i18n-html="agenda1_address">Sociëteit aan de Maas<br>Veerdam 1, 3016 DD Rotterdam</p>
           <p data-i18n="agenda1_time">Aanvang 16:00. De zaal is een half uur voor aanvang open.</p>
@@ -67,7 +129,7 @@
         </div>
       </div>
 
-      <div class="agenda-item reveal" data-date="2027-02-14" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="agenda-item reveal" data-date="2027-02-14" data-venue="maas" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="agenda-date"><span class="day">14</span><span class="month" data-i18n="agenda_month_feb">Feb</span></div>
         <div class="agenda-info">
           <h3 data-i18n="agenda2_venue">Sociëteit aan de Maas</h3>

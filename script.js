@@ -137,6 +137,30 @@ function initAgendaModal() {
   applyLang(currentLang());
 }
 
+function initAgendaFilter() {
+  const bar = document.getElementById('agendaFilter');
+  if (!bar) return;
+  const items = Array.from(document.querySelectorAll('.agenda-item[data-venue]'));
+  const empty = document.getElementById('agendaEmpty');
+  const buttons = Array.from(bar.querySelectorAll('.agenda-filter-btn'));
+
+  function apply(venue) {
+    let shown = 0;
+    items.forEach(item => {
+      const match = venue === 'all' || item.dataset.venue === venue;
+      item.hidden = !match;
+      if (match) shown++;
+    });
+    if (empty) empty.hidden = shown > 0;
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.venue === venue));
+  }
+
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('.agenda-filter-btn');
+    if (btn) apply(btn.dataset.venue);
+  });
+}
+
 function initCaptchaGuard() {
   const box = document.querySelector('.form-captcha');
   if (!box) return;
@@ -188,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initAgendaModal();
+  initAgendaFilter();
   initCaptchaGuard();
 
   applyLang(currentLang());
