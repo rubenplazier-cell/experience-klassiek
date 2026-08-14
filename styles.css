@@ -278,6 +278,9 @@ textarea{resize:vertical;min-height:120px}
 /* ===== Agenda ===== */
 .agenda-list{display:flex;flex-direction:column;gap:3px;background:var(--ink);border:3px solid var(--ink)}
 .agenda-item{background:var(--paper);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(18px,3vw,32px);align-items:center;padding:clamp(20px,3vw,32px);transition:background .3s ease;cursor:pointer}
+/* The display above beats the browser default for [hidden], so the venue
+   filter needs this to actually hide a row. */
+.agenda-item[hidden]{display:none}
 .agenda-item:hover{background:var(--paper-raised)}
 .agenda-item:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
 .agenda-item:hover .agenda-date .day{transform:scale(1.08)}
@@ -345,6 +348,11 @@ footer .foot-meta{font-size:.85rem;color:rgba(245,243,238,.75);max-width:36ch;li
 .form-note{font-size:.85rem;color:var(--muted);margin-top:14px}
 
 /* ===== Page hero ===== */
+/* Concertagenda opens straight on the list, so its heading stays modest. */
+.agenda-top{padding-top:clamp(28px,4vw,52px)}
+.agenda-top .section-head{margin-bottom:26px}
+.agenda-top h1{font-size:clamp(1.9rem,3.4vw,2.7rem);max-width:22ch}
+
 .page-hero{padding:clamp(56px,9vw,100px) 0 clamp(28px,4vw,44px)}
 .page-hero h1{font-size:clamp(2.8rem,7vw,5.2rem);max-width:18ch}
 .page-hero .lede{max-width:58ch;color:var(--muted);font-size:1.05rem;margin-top:16px}
