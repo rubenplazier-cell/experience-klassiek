@@ -68,9 +68,17 @@ function initAgendaModal() {
         <h4 data-i18n="agenda_modal_time_label">Tijd</h4>
         <p class="agenda-modal-time"></p>
       </div>
+      <div class="agenda-modal-section agenda-modal-performers-section">
+        <h4 data-i18n="agenda_modal_performers_label">Uitvoerenden</h4>
+        <p class="agenda-modal-performers"></p>
+      </div>
       <div class="agenda-modal-section">
         <h4 data-i18n="agenda_modal_program_label">Programma</h4>
         <p class="agenda-modal-program"></p>
+      </div>
+      <div class="agenda-modal-section agenda-modal-audio-section">
+        <h4 data-i18n="agenda_modal_audio_label">Luister alvast</h4>
+        <div class="agenda-modal-audio"></div>
       </div>
       <div class="agenda-modal-section agenda-modal-access-section">
         <h4 data-i18n="agenda_modal_access_label">Bereikbaarheid</h4>
@@ -85,7 +93,11 @@ function initAgendaModal() {
   const modalVenue = modal.querySelector('.agenda-modal-venue');
   const modalAddress = modal.querySelector('.agenda-modal-address');
   const modalTime = modal.querySelector('.agenda-modal-time');
+  const modalPerformers = modal.querySelector('.agenda-modal-performers');
+  const modalPerformersSection = modal.querySelector('.agenda-modal-performers-section');
   const modalProgram = modal.querySelector('.agenda-modal-program');
+  const modalAudio = modal.querySelector('.agenda-modal-audio');
+  const modalAudioSection = modal.querySelector('.agenda-modal-audio-section');
   const modalAccess = modal.querySelector('.agenda-modal-access');
   const modalAccessSection = modal.querySelector('.agenda-modal-access-section');
   const modalTickets = modal.querySelector('.agenda-modal-tickets');
@@ -97,21 +109,42 @@ function initAgendaModal() {
     const ticketLink = item.querySelector('a.btn');
     const detail = item.querySelector('[data-agenda-detail]');
     const paras = detail ? detail.querySelectorAll('p') : [];
+    const performers = item.querySelector('.agenda-info p');
     modalDate.textContent = day && month ? `${day.textContent} ${month.textContent}` : '';
     modalVenue.textContent = venue ? venue.textContent : '';
     modalAddress.innerHTML = paras[0] ? paras[0].innerHTML : '';
     modalTime.textContent = paras[1] ? paras[1].textContent : '';
+    // Copied as markup so the performer names keep their links to the artist page.
+    // A row without any link has no cast yet, only a "to be announced" line, and
+    // that belongs under Programma rather than under Uitvoerenden.
+    const hasCast = !!(performers && performers.querySelector('a'));
+    modalPerformers.innerHTML = hasCast ? performers.innerHTML : '';
+    modalPerformersSection.hidden = !hasCast;
     // Programs are set as markup so a multi-work listing keeps its line breaks.
     modalProgram.innerHTML = paras[2] ? paras[2].innerHTML : '';
     // Fourth paragraph is optional: only concerts with travel details show this section.
     modalAccess.innerHTML = paras[3] ? paras[3].innerHTML : '';
     modalAccessSection.hidden = !paras[3];
+    // Spotify embeds are built on open so a closed modal costs nothing, and torn
+    // down on close so the player cannot keep playing behind the page.
+    modalAudio.innerHTML = '';
+    const tracks = (item.dataset.spotify || '').split(',').map(s => s.trim()).filter(Boolean);
+    tracks.forEach(id => {
+      const frame = document.createElement('iframe');
+      frame.src = `https://open.spotify.com/embed/track/${id}?utm_source=generator`;
+      frame.loading = 'lazy';
+      frame.allow = 'encrypted-media; clipboard-write; fullscreen; picture-in-picture';
+      frame.setAttribute('height', '80');
+      modalAudio.appendChild(frame);
+    });
+    modalAudioSection.hidden = tracks.length === 0;
     if (ticketLink) modalTickets.setAttribute('href', ticketLink.getAttribute('href'));
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function close() {
     modal.classList.remove('open');
+    modalAudio.innerHTML = '';
     document.body.style.overflow = '';
   }
 
