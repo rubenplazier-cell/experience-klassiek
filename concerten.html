@@ -45,9 +45,27 @@
       <p style="color:var(--muted);max-width:56ch" data-i18n="concerten_agenda_p">Klik op een concert voor het volledige programma, de locatie en alle praktische info. Kaarten zijn te koop via onze ticketpartner.</p>
     </div>
     <div class="agenda-filter" id="agendaFilter">
-      <button type="button" class="agenda-filter-btn active" data-venue="all"><span data-i18n="agenda_filter_all">Alle locaties</span><span class="agenda-filter-count" aria-hidden="true"></span></button>
-      <button type="button" class="agenda-filter-btn" data-venue="maas"><span data-i18n="agenda_filter_maas">Sociëteit aan de Maas</span><span class="agenda-filter-count" aria-hidden="true"></span></button>
-      <button type="button" class="agenda-filter-btn" data-venue="breda"><span data-i18n="agenda_filter_breda">Waalse Kerk Breda</span><span class="agenda-filter-count" aria-hidden="true"></span></button>
+      <button type="button" class="agenda-filter-btn active" data-venue="all">
+        <span class="agenda-filter-label">
+          <span class="agenda-filter-city" data-i18n="agenda_filter_all_city">Alles</span>
+          <span class="agenda-filter-venue" data-i18n="agenda_filter_all">Alle locaties</span>
+        </span>
+        <span class="agenda-filter-count" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="agenda-filter-btn" data-venue="maas">
+        <span class="agenda-filter-label">
+          <span class="agenda-filter-city" data-i18n="agenda_filter_maas_city">Rotterdam</span>
+          <span class="agenda-filter-venue" data-i18n="agenda_filter_maas">Sociëteit aan de Maas</span>
+        </span>
+        <span class="agenda-filter-count" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="agenda-filter-btn" data-venue="breda">
+        <span class="agenda-filter-label">
+          <span class="agenda-filter-city" data-i18n="agenda_filter_breda_city">Breda</span>
+          <span class="agenda-filter-venue" data-i18n="agenda_filter_breda_venue">Waalse Kerk</span>
+        </span>
+        <span class="agenda-filter-count" aria-hidden="true"></span>
+      </button>
     </div>
     <p class="agenda-empty" id="agendaEmpty" hidden data-i18n="agenda_filter_empty">Geen concerten op deze locatie.</p>
     <div class="agenda-list stagger">

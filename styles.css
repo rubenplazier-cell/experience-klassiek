@@ -251,14 +251,24 @@ textarea{resize:vertical;min-height:120px}
 .agenda-filter-btn.active{color:var(--paper);border-color:var(--gold);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
 .agenda-filter-btn.active::before{background:var(--gold);transform:scaleX(1)}
 .agenda-filter-btn:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+/* City on top, hall underneath, so the buttons read as places and not as a
+   list of names. The hall line drops the city it used to repeat. */
+.agenda-filter-label{display:flex;flex-direction:column;align-items:flex-start;gap:4px;line-height:1;text-align:left}
+.agenda-filter-city{font-size:.6rem;letter-spacing:.2em;opacity:.6;transition:opacity .2s ease}
+.agenda-filter-venue{font-size:.84rem;letter-spacing:.03em}
+.agenda-filter-btn:hover .agenda-filter-city,
+.agenda-filter-btn:focus-visible .agenda-filter-city,
+.agenda-filter-btn.active .agenda-filter-city{opacity:1}
 .agenda-filter-count{
-  font-size:.66rem;line-height:1;padding:4px 7px;border:2px solid currentColor;
+  font-size:.66rem;line-height:1;padding:5px 8px;border:2px solid currentColor;
   font-variant-numeric:tabular-nums;opacity:.75;transition:opacity .2s ease;
 }
 .agenda-filter-btn:hover .agenda-filter-count,
 .agenda-filter-btn.active .agenda-filter-count{opacity:1}
 .agenda-empty{color:var(--muted);margin:0 0 26px}
-@media (max-width:520px){.agenda-filter-btn{flex:1 1 100%;justify-content:center}}
+@media (max-width:520px){
+  .agenda-filter-btn{flex:1 1 100%;justify-content:space-between}
+}
 @media (prefers-reduced-motion:reduce){
   .agenda-filter-btn,.agenda-filter-btn::before{transition:none}
   .agenda-filter-btn:hover,.agenda-filter-btn:focus-visible,.agenda-filter-btn.active{transform:none;box-shadow:none}
