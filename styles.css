@@ -390,3 +390,28 @@ footer .foot-meta{font-size:.85rem;color:rgba(245,243,238,.75);max-width:36ch;li
 @media (prefers-reduced-motion:reduce){
   .logo-mark{animation:none}
 }
+
+/* ===== Artist and venue profiles ===== */
+.profile-list{display:flex;flex-direction:column;gap:3px;background:var(--ink);border:3px solid var(--ink)}
+.profile{background:var(--paper);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,36px);padding:clamp(22px,3vw,36px);scroll-margin-top:96px}
+.profile:target{background:var(--paper-raised);outline:3px solid var(--gold);outline-offset:-3px}
+/* The portrait is typographic on purpose: swap the span for an <img> once a
+   press photo with clearance is available and the tile keeps its shape. */
+.profile-portrait{width:clamp(84px,10vw,124px);aspect-ratio:1;background:var(--ink);display:grid;place-items:center;flex-shrink:0}
+.profile-portrait span{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.1rem,3.4vw,3rem);line-height:1;color:var(--gold)}
+.profile-portrait img{width:100%;height:100%;object-fit:cover}
+.profile-body h2{font-size:clamp(1.6rem,2.6vw,2.1rem);margin:0 0 .12em}
+.profile-body h3{font-size:.72rem;font-family:'Inter',sans-serif;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 6px}
+.profile-body p{margin:0 0 12px;max-width:64ch;color:var(--muted)}
+.profile-role{font-family:'Inter',sans-serif;font-weight:800;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.profile-links{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:0}
+.profile-links a{font-weight:700;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:2px}
+.profile-links a:hover{color:var(--gold)}
+@media (max-width:640px){
+  .profile{grid-template-columns:1fr}
+}
+
+/* Performer and venue names inside an agenda row link out to their own page. */
+.agenda-info a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+.agenda-info a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.agenda-info h3 a{border-bottom-width:2px}
