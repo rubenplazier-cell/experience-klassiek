@@ -176,14 +176,38 @@ function initAgendaFilter() {
   const items = Array.from(document.querySelectorAll('.agenda-item[data-venue]'));
   const empty = document.getElementById('agendaEmpty');
   const buttons = Array.from(bar.querySelectorAll('.agenda-filter-btn'));
+  const stillMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Each button carries how many concerts it would leave on screen. The count
+  // lives in its own span because applyLang writes textContent on the label.
+  buttons.forEach(btn => {
+    const slot = btn.querySelector('.agenda-filter-count');
+    if (!slot) return;
+    const venue = btn.dataset.venue;
+    slot.textContent = venue === 'all'
+      ? items.length
+      : items.filter(i => i.dataset.venue === venue).length;
+  });
 
   function apply(venue) {
     let shown = 0;
     items.forEach(item => {
       const match = venue === 'all' || item.dataset.venue === venue;
       item.hidden = !match;
-      if (match) shown++;
+      if (!match) return;
+      if (!stillMotion) {
+        // Replay the reveal so the surviving rows cascade in rather than snap.
+        // Delay follows visible position, not DOM position, so there are no
+        // gaps where a filtered-out row used to sit.
+        item.style.transitionDelay = `${shown * 55}ms`;
+        item.classList.remove('in');
+      }
+      shown++;
     });
+    if (!stillMotion) {
+      void bar.offsetWidth; // flush the class removal before re-adding it
+      items.forEach(item => { if (!item.hidden) item.classList.add('in'); });
+    }
     if (empty) empty.hidden = shown > 0;
     buttons.forEach(b => b.classList.toggle('active', b.dataset.venue === venue));
   }
