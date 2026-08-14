@@ -72,6 +72,10 @@ function initAgendaModal() {
         <h4 data-i18n="agenda_modal_program_label">Programma</h4>
         <p class="agenda-modal-program"></p>
       </div>
+      <div class="agenda-modal-section agenda-modal-access-section">
+        <h4 data-i18n="agenda_modal_access_label">Bereikbaarheid</h4>
+        <p class="agenda-modal-access"></p>
+      </div>
       <a href="#" class="btn btn-solid agenda-modal-tickets" data-i18n="agenda_tickets_cta">Koop tickets →</a>
     </div>
   `;
@@ -82,6 +86,8 @@ function initAgendaModal() {
   const modalAddress = modal.querySelector('.agenda-modal-address');
   const modalTime = modal.querySelector('.agenda-modal-time');
   const modalProgram = modal.querySelector('.agenda-modal-program');
+  const modalAccess = modal.querySelector('.agenda-modal-access');
+  const modalAccessSection = modal.querySelector('.agenda-modal-access-section');
   const modalTickets = modal.querySelector('.agenda-modal-tickets');
 
   function open(item) {
@@ -96,6 +102,9 @@ function initAgendaModal() {
     modalAddress.innerHTML = paras[0] ? paras[0].innerHTML : '';
     modalTime.textContent = paras[1] ? paras[1].textContent : '';
     modalProgram.textContent = paras[2] ? paras[2].textContent : '';
+    // Fourth paragraph is optional: only concerts with travel details show this section.
+    modalAccess.innerHTML = paras[3] ? paras[3].innerHTML : '';
+    modalAccessSection.hidden = !paras[3];
     if (ticketLink) modalTickets.setAttribute('href', ticketLink.getAttribute('href'));
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
