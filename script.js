@@ -49,6 +49,75 @@ function applyLang(lang) {
   });
 }
 
+// The headline is rebuilt into per-word spans so each one can rise out from
+// behind its own mask. applyLang writes textContent, which wipes the spans, so
+// this has to run after every language change rather than once at load.
+function splitHeroHeadline() {
+  const h1 = document.querySelector('[data-hero-split]');
+  if (!h1) return;
+  const words = (h1.textContent || '').trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return;
+  h1.textContent = '';
+  words.forEach((word, i) => {
+    const mask = document.createElement('span');
+    mask.className = 'word';
+    const inner = document.createElement('span');
+    inner.style.setProperty('--d', `${(0.22 + i * 0.055).toFixed(3)}s`);
+    inner.textContent = word;
+    mask.appendChild(inner);
+    h1.appendChild(mask);
+    if (i < words.length - 1) h1.appendChild(document.createTextNode(' '));
+  });
+  // Replay from the hidden state, so switching language re-runs the entrance.
+  h1.classList.remove('in');
+  void h1.offsetWidth;
+  h1.classList.add('in');
+}
+
+function initHero() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  // The hero is one screen minus the sticky nav; measuring beats guessing,
+  // because the nav wraps to two rows at some widths.
+  const nav = document.querySelector('.site-nav');
+  if (nav) {
+    const measure = () => document.documentElement.style.setProperty('--nav-h', `${nav.offsetHeight}px`);
+    measure();
+    window.addEventListener('resize', measure);
+  }
+
+  // Flush layout, then flip the class in the same tick. requestAnimationFrame
+  // would be cleaner, but it never fires while the tab is in the background,
+  // which left the hero blank on a page opened in a second tab.
+  void hero.offsetWidth;
+  hero.classList.add('ready');
+  splitHeroHeadline();
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Photo and type drift apart as you scroll, and the type dims out before the
+  // next section arrives.
+  const media = hero.querySelector('.hero-media');
+  const content = hero.querySelector('.hero-content');
+  const cue = hero.querySelector('.hero-scroll');
+  // Written straight from the scroll event rather than inside a rAF callback:
+  // reading scrollY costs nothing here, and rAF is frozen in a background tab,
+  // which left the effect dead until the tab was focused.
+  const drift = () => {
+    const y = window.scrollY;
+    if (y > window.innerHeight * 1.3) return;
+    if (media) media.style.transform = `translate3d(0,${y * 0.28}px,0)`;
+    if (content) {
+      content.style.transform = `translate3d(0,${y * 0.12}px,0)`;
+      content.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.65)));
+    }
+    if (cue) cue.style.opacity = String(Math.max(0, 1 - y / 220));
+  };
+  window.addEventListener('scroll', drift, { passive: true });
+  drift();
+}
+
 function initAgendaModal() {
   const items = document.querySelectorAll('.agenda-item[data-date]');
   if (!items.length) return;
@@ -273,6 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaptchaGuard();
 
   applyLang(currentLang());
+  initHero();
 
   const langSwitch = document.getElementById('langSwitch');
   if (langSwitch) {
@@ -284,6 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
       url.searchParams.set('lang', lang);
       history.replaceState(null, '', url);
       applyLang(lang);
+      // applyLang rewrote the headline as plain text; put the words back.
+      splitHeroHeadline();
     });
   }
 });
