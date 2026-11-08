@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>Zender</title><body>
+<script>
+(async()=>{const f=new URLSearchParams(location.search).get('f');
+const r=await fetch(f);const b=await r.arrayBuffer();
+(window.opener||window.parent).postMessage({zender:1,name:f.split('/').pop(),type:r.headers.get('content-type'),buf:b},'*');
+document.body.textContent='verstuurd: '+f;setTimeout(()=>window.close(),1500)})();
+</script>
