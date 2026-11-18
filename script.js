@@ -207,7 +207,13 @@ function initAgendaModal() {
       modalAudio.appendChild(frame);
     });
     modalAudioSection.hidden = tracks.length === 0;
-    if (ticketLink) modalTickets.setAttribute('href', ticketLink.getAttribute('href'));
+    // The popup button mirrors the row's own button, so a free concert says
+    // "Gratis toegang" instead of "Koop tickets", and a row without a link has none.
+    if (ticketLink) {
+      modalTickets.setAttribute('href', ticketLink.getAttribute('href'));
+      modalTickets.textContent = ticketLink.textContent;
+    }
+    modalTickets.style.display = ticketLink ? '' : 'none';
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
